@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        function App() {
+            const [isDisabled, setIsDisabled] = useState(false);
+
+            const disableButton = () => {
+                setIsDisabled(true);
+            };
+
+            return (
+                <div>
+                    <h3>React js disable button on click</h3>
+                    <button disabled={isDisabled} onClick={disableButton}>
+                        Send
+                    </button>
+                </div>
+            );
+        }
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+    <style>
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</body>
+
+</html>

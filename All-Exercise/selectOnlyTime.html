@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel" data-presets="env,react">
+        const { useState } = React;
+        function App() {
+            const [selectedTime, setSelectedTime] = useState("");
+            return (
+                <div className='container'>
+                    <h3>React Js Date Time Picker Example</h3>
+                    <input
+                        type="time"
+                        className="time-input"
+                        value={selectedTime}
+                        onChange={(e) => setSelectedTime(e.target.value)}
+                    />
+                      {selectedTime}
+                </div>
+                  
+            );
+        }
+                  
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+
+    <style>
+        .container {
+            margin: 0 auto;
+            width: 500px;
+            text-align: center;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .time-input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            width: 150px;
+        }
+    </style>
+</body>
+
+</html>

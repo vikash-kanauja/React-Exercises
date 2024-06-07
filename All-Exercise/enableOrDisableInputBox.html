@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.14.6/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel" data-presets="env,react">
+        const { useState } = React;
+        function App() {
+            const [disabled, setDisabled] = useState(false);
+            return (
+                <div className="container">
+                    <h3>React Js Enable/Disable Input Text field based on checkbox value</h3>
+                    <div className="input-group">
+                        <input
+                            type="checkbox"
+                            checked={disabled}
+                            onChange={(e) => setDisabled(e.target.checked)}
+                        />
+                        <input type="text" disabled={!disabled} />
+                    </div>
+                </div>
+
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .container h3 {
+            margin-bottom: 10px;
+        }
+
+        .container .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .container .input-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .container input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</body>
+
+</html>

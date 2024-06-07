@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+       function App() {
+            const { useState } = React;
+            const [items, setItems] = useState(['Apple', 'Mango']); // State to hold the array of items
+            const [inputValue, setInputValue] = useState(''); // State to hold the input field value
+
+            const handleInputChange = (event) => {
+                setInputValue(event.target.value);
+            };
+
+            const handleAddItem = () => {
+                if (inputValue.trim() !== '') {
+                    setItems((prevItems) => [...prevItems, inputValue]);
+                    setInputValue(''); // Clear the input field after adding the item
+                }
+            };
+           return (
+                <div className='container'>
+                    <h3>React Js Add Element or Items to Array bu Input field</h3>
+                    <div className='form'>
+                        <input type="text" value={inputValue} onChange={handleInputChange} />
+                        <button onClick={handleAddItem}>Add Item</button>
+                    </div>
+
+                    <ul>
+                        {items.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+
+    <style>
+        #app {
+            margin: 0 auto;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        .container {
+
+            padding: 20px;
+
+            border-radius: 8px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+    </style>
+</body>
+
+</html>
