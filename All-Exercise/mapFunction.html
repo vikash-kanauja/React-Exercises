@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            const [partyData, setPartyData] = useState([
+                {
+                    "id": 1,
+                    "name": "John Smith",
+                    "party": "Democratic Party"
+                },
+                {
+                    "id": 2,
+                    "name": "Sarah Johnson",
+                    "party": "Republican Party"
+                },
+                {
+                    "id": 3,
+                    "name": "Michael Thompson",
+                    "party": "Green Party"
+                },
+                {
+                    "id": 4,
+                    "name": "Emily Davis",
+                    "party": "Independent"
+                },
+                {
+                    "id": 5,
+                    "name": "Robert Martinez",
+                    "party": "Libertarian Party"
+                },
+                {
+                    "id": 6,
+                    "name": "Jennifer Lee",
+                    "party": "Democratic Party"
+                },
+                {
+                    "id": 7,
+                    "name": "Andrew Wilson",
+                    "party": "Republican Party"
+                },
+                {
+                    "id": 8,
+                    "name": "Stephanie Adams",
+                    "party": "Independent"
+                },
+                {
+                    "id": 9,
+                    "name": "David Garcia",
+                    "party": "Democratic Party"
+                },
+                {
+                    "id": 10,
+                    "name": "Jessica Roberts",
+                    "party": "Republican Party"
+                }
+            ]);
+
+            return (
+                <div className='container'>
+                    <h1>React JS Display JSON data as table</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Party</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {partyData.map((item) => (
+                                <tr key={item.id}>
+                                    <td>{item.id}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.party}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+
+
+    <style>
+        .container {
+            margin: 0 auto;
+            width: 600px;
+            text-align: center;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+            padding: 20px
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #ebebeb;
+        }
+    </style>
+</body>
+
+</html>

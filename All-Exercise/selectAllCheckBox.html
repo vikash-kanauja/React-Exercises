@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.14.7/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            const countries = [
+                { id: "1", countryName: "AMERICA" },
+                { id: "2", countryName: "AUSTRALIA" },
+                { id: "3", countryName: "INDIA" },
+                { id: "4", countryName: "ENGLAND" },
+            ];
+            const [checked, setChecked] = useState([]);
+
+            const handleCheckAllChange = (e) => {
+                setChecked(
+                    e.target.checked ? countries.map((c) => c.countryName) : []
+                );
+            };
+            const handleCountryChange = (e) => {
+                setChecked((prevChecked) => {  // use for make changes in latest update is state 
+                    return e.target.checked ? [...prevChecked, e.target.value] : prevChecked.filter((item) => item !== e.target.value)
+                })
+            }
+            console.log("handlechange", checked);
+            return (
+                <div className="container">
+                    <h3>React Js Checkbox Select All | Unselect All </h3>
+                    <div className="form-check">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="selectAll"
+                            checked={checked.length === countries.length}
+                            onChange={handleCheckAllChange}
+                        />
+                        <label className="form-check-label" htmlFor="selectAll">
+                            Select all
+                        </label>
+                    </div>
+                    {countries.map((c) => (
+                        <div className="form-check form-check-inline" key={c.id}>
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id={c.id}
+
+                                value={c.countryName}
+                                checked={checked.includes(c.countryName)}
+                                onChange={handleCountryChange}
+                            />
+                            <label className="form-check-label" htmlFor={c.id}>
+                                {c.countryName}
+                            </label>
+                        </div>
+                    ))}
+                    <p>{checked.join(", ")}</p>
+                </div>
+            );
+        }
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12),
+                0 2px 4px 0 rgba(0, 0, 0, 0.24);
+            padding: 20px;
+        }
+
+        /* CSS for header */
+        h3 {
+            margin: 0 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* CSS for form-check */
+        .form-check {
+            margin-bottom: 10px;
+        }
+
+        /* CSS for checkbox input */
+        .form-check-input {
+            margin-right: 8px;
+        }
+
+        /* CSS for checkbox label */
+        .form-check-label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* CSS for selected countries paragraph */
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Styling for the "Select all" checkbox label when checked */
+        .form-check-input:checked+.form-check-label {
+            font-weight: bold;
+            color: #2196f3;
+            /* Change to your desired color */
+        }
+    </style>
+</body>
+
+</html>
